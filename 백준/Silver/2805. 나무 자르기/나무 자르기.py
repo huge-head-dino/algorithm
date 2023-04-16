@@ -21,3 +21,4 @@ while start <= end: #가장 알맞는 H 길이를 찾는 알고리즘
     else:
         end = mid - 1
 print(end)
+
