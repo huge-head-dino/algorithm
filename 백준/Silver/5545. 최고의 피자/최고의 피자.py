@@ -18,9 +18,12 @@ for i in range(N):
 # 2개만 고른놈중엔 index[0]하고 [1]이 젤 효율적
 jung = sorted(toppings, reverse=True)
 
-for i in range(len(jung)+1):
+# range(N+1)이 아니라 len(jung)+1인 이유:
+
+
+for i in range(N+1):
     price = PR_D + PR_T * (i)
-    res = max(res, (dough+sum(jung[:(i)]))//price)
+    res = max(res, (dough+sum(jung[:i]))//price)
 
 
 print(res)
