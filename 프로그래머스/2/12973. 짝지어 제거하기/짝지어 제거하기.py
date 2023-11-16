@@ -7,7 +7,7 @@ def solution(s):
         if idx == 0:
             stack.append(val)
         else:
-            if len(stack) >= 1 and stack[len(stack)-1] == val:
+            if len(stack) >= 1 and stack[-1] == val:
                 stack.pop()
             else:
                 stack.append(val)
