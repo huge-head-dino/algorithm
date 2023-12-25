@@ -4,7 +4,7 @@ top_list = list(map(int, input().split()))  # 탑 리스트
 stack = [] # 최댓값을 저장할 스택
 answer = [] # 레이저를 수신한 탑의 위치(인덱스)를 저장할 리스트
 
-for i in range(N): # 이 for문에서는 각 탑의 레이저 수신 여부를 판단
+for i in range(N): # 이 for문에서는 각 탑의  레이저 수신 여부를 판단
     while stack: # 스택이 비어있지 않을 때까지 루프 실행
         if stack[-1][1] > top_list[i]:  # 스택의 맨 위에 있는 탑이 현재 탑보다 높이가 작다면
             answer.append(stack[-1][0] + 1) # 현재 탑에서 레이저가 수신가능한 상황/
