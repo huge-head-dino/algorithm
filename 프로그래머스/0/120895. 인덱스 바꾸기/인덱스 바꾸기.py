@@ -5,3 +5,4 @@ def solution(my_string, num1, num2):
     L_string[num2] = temp[num1]
     answer = "".join(L_string)
     return answer
+# 출력
