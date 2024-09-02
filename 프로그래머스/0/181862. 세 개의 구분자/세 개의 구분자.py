@@ -14,7 +14,7 @@ def solution(myStr):
                 temp = []
         else:
             temp.append(i)
-    # 마지막 temp에 남아있는 부분을 처리
+    # 마지막 temp에 남아있는 부분을 처리해주고 마무리
     if temp:
         piece = ''.join(temp)
         answer.append(piece)
