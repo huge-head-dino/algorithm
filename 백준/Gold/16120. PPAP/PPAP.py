@@ -1,6 +1,7 @@
 import sys
 input = sys.stdin.readline
 
+#.
 P = input().strip()
 
 if P=='P' or P=='PPAP':
