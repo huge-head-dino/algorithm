@@ -1,17 +1,25 @@
 from collections import deque
-def solution(s):
-    stack = []
-    for i in s:
-        if len(stack) == 0 and i == ')':
-            return False
-        if i =='(':
+def solution(data):
+    
+    answer = True
+    data = deque(data)
+    # 애초에 성립 안되는 데이터 전처리
+    if data[0] == ')':
+        answer = False
+    
+    stack = deque()
+    
+    for i in data:
+        if i == '(':
             stack.append(i)
-        else:
-            stack.pop()
+        elif i == ')':
+            if len(stack) == 0:
+                return False
+            stack.popleft()
+    
     if len(stack) == 0:
-        return True
+        answer = True
     else:
-        return False
+        answer = False
     
     return answer
-
