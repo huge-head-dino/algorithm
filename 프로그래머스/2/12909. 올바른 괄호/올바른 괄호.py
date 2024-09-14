@@ -1,9 +1,10 @@
 from collections import deque
 def solution(data):
     
+
     answer = True
     data = deque(data)
-    # 애초에 성립 안되는 데이터 전처리
+    # 애초 성립 안되는 데이터 전처리
     if data[0] == ')':
         answer = False
     
