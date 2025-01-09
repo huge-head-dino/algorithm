@@ -1,33 +1,25 @@
 from collections import deque
 def solution(priorities, location):
-    answer = 0
-    clear = deque()
-    clear_dp = deque()
+    # 사전준비
     priorities = deque(priorities)
+    record = list(range(len(priorities))) # 가장 처음의 형태의 index를 기록해놓는다.
+    record = deque(record)
+    answer_p = []
+    answer_s = []
     
-    dp = list(range(len(priorities)))
-    for i in range(len(dp)):
-        dp[i] = str(i)
-    dp = deque(dp)
-    print(dp)
-    
-    # priorities가 존재하면 반복
     while priorities:
-        standard = priorities.popleft()
-        dp_s = dp.popleft()
-        if priorities and standard < max(priorities):
-            priorities.append(standard)
-            dp.append(dp_s)
-            
-        else: 
-            clear.append(standard)
-            clear_dp.append(dp_s)
+        # 가장 큰 수가 몇번째 인덱스를 가지고 있는지 구해보기
+        max_p = max(priorities)
+        res = priorities.index(max_p) #res는 현재 list에서 가장 큰 수의 index
+
+        for i in range(res):
+            priorities.rotate(-1)
+            record.rotate(-1)
+        p = priorities.popleft()
+        s = record.popleft()
+        answer_p.append(p)
+        answer_s.append(s)
+    ans = answer_s.index(location) + 1
+    return ans
     
-    if str(location) in clear_dp:
-        answer = clear_dp.index(str(location)) + 1
-    else:
-        answer = 0
     
-    # 해결 못한 문제점 : location에 주어진 값이 다른 priorities값과 동일하면 어떻게 구별?
-    # 지금 standard가 주어진 priorities에서 몇번쨰 location이었는지 확인한다?
-    return answer
