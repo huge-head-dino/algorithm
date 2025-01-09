@@ -1,21 +1,42 @@
+
 from collections import deque
 import math
+
 def solution(progresses, speeds):
-    answer = []
-    queue = deque()
-    # 필요한 작업 일수를 계산해서 따로 queue에 담기
-    for i in range(len(speeds)):
-        need_day = math.ceil((100 - progresses[i]) / speeds[i])
-        queue.append(need_day)
-    print(queue)
+    # 남은 process 확인하기
+    rest = []
+    for i in progresses:
+        process = 100 - i
+        rest.append(process)
+        
+    # zip으로 묶어서 필요한 날짜 계산하기
+    days = [] 
+    for a,b in zip(rest,speeds):
+        day = math.ceil(a / b)
+        days.append(day)
     
-    # queue에서 원소 다 빠질 때까지 반복하는 while
-    while queue:
-        standard = queue.popleft()
-        cnt = 1
-        # 막혀있던 값이 나갈 때, 같이 나갈 값들 처리하는 while
-        while queue and standard >= queue[0]:
-            queue.popleft()
-            cnt += 1
-        answer.append(cnt)
+    # 최종처리하기
+    days = deque(days)
+    answer = []
+    cnt = 0
+    
+    # print(days)
+    while days:
+        cnt = 0
+        out = days.popleft()
+        cnt += 1
+        if not days:
+            answer.append(cnt)
+            break
+        else:
+            while out >= days[0]:
+                days.popleft()
+                cnt += 1
+                if not days:
+                    answer.append(cnt)
+                    break
+            else:
+                answer.append(cnt)
     return answer
+        
+    
